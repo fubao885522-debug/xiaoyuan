@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.OrdersMapper">
+
+    <select id="selectAll" resultType="com.example.entity.Orders">
+        select * from `orders`
+        <where>
+            <if test="userId != null"> and user_id = #{userId}</if>
+            <if test="userName != null and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+            <if test="orderNo != null and orderNo != ''"> and order_no like concat('%', #{orderNo}, '%')</if>
+            <if test="status != null and status != ''"> and status = #{status}</if>
+            <if test="orderStatus != null and orderStatus != ''"> and order_status = #{orderStatus}</if>
+            <if test="startTime != null and startTime != ''"> and time &gt;= #{startTime}</if>
+            <if test="endTime != null and endTime != ''"> and time &lt;= #{endTime}</if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.Orders">
+        select * from `orders` where id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from `orders` where id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.Orders" useGeneratedKeys="true" keyProperty="id">
+        insert into `orders`(order_no, user_id, user_name, total_price, status, delivery_type, order_status, address, deliver, time)
+        values (#{orderNo}, #{userId}, #{userName}, #{totalPrice}, #{status}, #{deliveryType}, #{orderStatus}, #{address}, #{deliver}, #{time})
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Orders">
+        update `orders` set order_no = #{orderNo}, user_id = #{userId}, user_name = #{userName},
+            total_price = #{totalPrice}, status = #{status}, delivery_type = #{deliveryType}, order_status = #{orderStatus}, address = #{address}, deliver = #{deliver}, time = #{time}
+        where id = #{id}
+    </update>
+
+</mapper>

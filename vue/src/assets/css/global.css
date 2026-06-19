@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+a {
+    color: #1967e3;
+    text-decoration: none;
+}
+
+th {
+    color: #333 !important;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+.front-container{
+    width:60%;margin: 0 auto;
+    padding-top: 10px;
+    min-height: 100vh
+}
+

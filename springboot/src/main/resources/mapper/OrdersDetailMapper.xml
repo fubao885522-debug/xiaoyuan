@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.OrdersDetailMapper">
+
+    <select id="selectByOrderId" resultType="com.example.entity.OrdersDetail">
+        select * from `orders_detail` where order_id = #{orderId}
+    </select>
+
+    <delete id="deleteById">
+        delete from `orders_detail` where id = #{id}
+    </delete>
+
+    <delete id="deleteByOrderId">
+        delete from `orders_detail` where order_id = #{orderId}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.OrdersDetail" useGeneratedKeys="true" keyProperty="id">
+        insert into `orders_detail`(order_id, goods_id, goods_name, goods_img, price, num)
+        values (#{orderId}, #{goodsId}, #{goodsName}, #{goodsImg}, #{price}, #{num})
+    </insert>
+
+</mapper>

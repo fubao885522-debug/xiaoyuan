@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.RechargeMapper">
+
+    <select id="selectAll" resultType="com.example.entity.Recharge">
+        select * from `recharge`
+        <where>
+            <if test="userId != null"> and user_id = #{userId}</if>
+            <if test="type != null and type != ''"> and `type` = #{type}</if>
+            <if test="time != null and time != ''"> and `time` like concat('%', #{time}, '%')</if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.Recharge">
+        select * from `recharge` where id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from `recharge` where id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.Recharge" useGeneratedKeys="true" keyProperty="id">
+        insert into `recharge`(money, user_id, `type`, `time`)
+        values (#{money}, #{userId}, #{type}, #{time})
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Recharge">
+        update `recharge` set money = #{money}, user_id = #{userId},
+            `type` = #{type}, `time` = #{time}
+        where id = #{id}
+    </update>
+
+</mapper>

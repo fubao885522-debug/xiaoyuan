@@ -1,0 +1,24 @@
+# Java编译文件
+target/
+*.class
+*.jar
+*.war
+
+# IDE缓存文件
+.idea/
+.vscode/
+*.iml
+
+# 系统垃圾文件
+.DS_Store
+Thumbs.db
+
+# 日志、本地私密配置
+logs/
+*.log
+application-dev.yml
+application-local.yml
+
+# 前端项目缓存（如有）
+node_modules/
+dist/

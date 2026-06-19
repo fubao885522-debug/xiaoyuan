@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.CollectMapper">
+
+    <select id="selectAll" resultType="com.example.entity.Collect">
+        select * from `collect`
+        <where>
+            <if test="userId != null"> and user_id = #{userId}</if>
+            <if test="goodsId != null"> and goods_id = #{goodsId}</if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectById" resultType="com.example.entity.Collect">
+        select * from `collect` where id = #{id}
+    </select>
+
+    <select id="selectByUserIdAndGoodsId" resultType="com.example.entity.Collect">
+        select * from `collect` where user_id = #{userId} and goods_id = #{goodsId}
+    </select>
+
+    <delete id="deleteById">
+        delete from `collect` where id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.example.entity.Collect" useGeneratedKeys="true" keyProperty="id">
+        insert into `collect`(user_id, goods_id, goods_name, goods_img, goods_price, `time`)
+        values (#{userId}, #{goodsId}, #{goodsName}, #{goodsImg}, #{goodsPrice}, #{time})
+    </insert>
+
+    <update id="updateById" parameterType="com.example.entity.Collect">
+        update `collect` set user_id = #{userId}, goods_id = #{goodsId},
+            goods_name = #{goodsName}, goods_img = #{goodsImg}, goods_price = #{goodsPrice}, `time` = #{time}
+        where id = #{id}
+    </update>
+
+</mapper>
