@@ -41,6 +41,7 @@ public class UserService {
             user.setAccount(BigDecimal.valueOf(0.00));
         }
         userMapper.insert(user);
+
     }
 
     /**
